@@ -1,0 +1,39 @@
+/************ 启动nginx-rtmp推流和拉流 **********/
+	$$ ./ffmpeg -re -i music.ts -c:v libx265 -c:a aac -f flv rtmp://127.0.0.1:1935/live/livestream >ret.log 2>&1
+	$$ ./ffplay -i -f flv rtmp://127.0.0.1:1935/live/livestream >play.log 2>&1
+	$$ ./ffmpeg -i rtmp://127.0.0.1:1935/live/livestream -c copy srs.ts  ## 拉去rtmp保存为本地文件
+
+nginx-rtmp对h265,从观看效果来看，可以看到完整清晰的视频，但是视频和音频均有卡顿现象
+
+	$$ ./ffmpeg -re -i music.ts -c:v libx264 -c:a aac -f flv rtmp://127.0.0.1:1935/live/livestream
+	$$ ./ffplay -i -f flv rtmp://127.0.0.1:1935/live/livestream
+
+nginx-rtmp对h264从观看效果来看，视频黑屏，偶尔有声音伴有杂音
+
+/************ 启动srs推流和拉流 **********/
+	$$ ./ffmpeg -re -i music.ts -c:v libx265 -c:a aac -f flv rtmp://127.0.0.1:1935/live/livestream >ret.log 2>&1
+	$$ ./ffplay -i -f flv rtmp://127.0.0.1:1935/live/livestream >play.log 2>&1
+
+srs对于h265从观看效果来看，视频黑屏，偶尔有声音伴有杂音
+
+	$$ ./ffmpeg -re -i music.ts -c:v libx264 -c:a aac -f flv rtmp://127.0.0.1:1935/live/livestream
+	$$ ./ffplay -i -f flv rtmp://127.0.0.1:1935/live/livestream
+
+srs对于h264可以看到完整清晰的视频，但是视频和音频均有卡顿现象
+
+/*********** nginx-rtmp服务启动和关闭 **********/
+nginx服务开启：sudo /home/ubuntu/nginx-rtmp/sbin/nginx
+nginx服务停止：sudo /home/ubuntu/nginx-rtmp/sbin/nginx -s stop
+
+/***************** 启动SRS ******************/
+./objs/srs -c conf/rtmp.conf
+
+/***************** SRS 对于RTMP分发的操作 ***************/
+https://github.com/ossrs/srs/wiki/v1_CN_DeliveryRTMP
+其中有一句：SRS直播将RTMP作为基本协议，以各种方式转码为RTMP后输入到SRS
+
+/***************** 本地虚拟机目录 *******************/
+/home/ubuntu/SRS_H265/srs-2.0release/trunk	##启动srs的目录
+/home/ubuntu/SRS_H265						##启动ffmpeg的目录
+
+

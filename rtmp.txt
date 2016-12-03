@@ -1,0 +1,22 @@
+/************ EasyRTMP实现的rtmp推流的基本协议流程 **************/
+
+http://blog.csdn.net/xiejiashu/article/details/52983027
+
+/************ 开源流媒体服务器--EasyDarwin *****************/
+
+http://blog.csdn.net/xiejiashu/article/details/40895717
+
+/************* 流媒体服务器之Darwin Streaming Server ************/
+
+http://www.easydarwin.org/article/Streaming/61.html
+http://dss.macosforge.org/
+
+/************* ffmpeg处理rtmp/文件/rtsp的推流和拉流 *************/
+
+http://blog.csdn.net/zhuweigangzwg/article/details/43734251
+
+/************* Nginx-based Media Streaming Server **************/
+
+https://github.com/arut/nginx-rtmp-module
+https://github.com/arut/nginx-rtmp-module/wiki/Getting-started-with-nginx-rtmp #提到对H264等codec的支持情况
+
